@@ -1,11 +1,16 @@
 # rcpp_rbind_dfs_impl.cpp:1:18: fatal error: Rcpp.h: No such file or directory
 
-Cause: install any package that relies on Rcpp:
+## Cause
+
+Install a package that relies on Rcpp and uses it incorrectly:
+
 ```
 devtools::install_github("richelbilderbeek/ribir")
 ```
 
-Result:
+(note that this package has been fixed now)
+
+## Result
 
 ```
 Downloading GitHub repo richelbilderbeek/ribir@master
@@ -27,10 +32,26 @@ ERROR: compilation failed for package ‘ribir’
 Error: Command failed (1)
 ```
 
-Solution:
+## Solution
 
+The function `rcpp_rbind_dfs_impl` in the file `rcpp_rbind_dfs_impl.cpp` was incorrectly implemented.
 
+## Not solutions
+
+From [Romain Francois](http://stackoverflow.com/a/16260937), add to DESCRIPTION:
 
 ```
-NOT sudo apt-get install r-base-dev
+LinkingTo: Rcpp
+```
+
+Nor
+
+```
+sudo apt-get install r-base-dev
+```
+
+Nor
+
+```
+sudo apt-get install r-cran-rcpp
 ```
